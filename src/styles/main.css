@@ -63,6 +63,17 @@ h3 {
   font-size: clamp(0.9rem, 1.7vmin, 1rem);
 }
 
+p {
+  color: var(--dk-g-m);
+  font-size: clamp(0.9rem, 1.8vmin, 0.99rem);
+  line-height: 1.4;
+}
+
+span, figure {
+  height: min-content;
+  align-self: var(--cn);
+}
+
 .fx-column, .sc__card p {
   flex-flow: column;
 }
@@ -106,15 +117,34 @@ h3 {
   width: 30%;
   height: 90%;
   border-radius: var(--rad);
+  padding: 2%;
 }
 .sc__card p {
+  --dk-g-m: var(--wt);
   flex: 0.5 1 auto;
   text-align: var(--cn);
+}
+.sc__ico {
+  width: 70%;
 }
 .sc__ico img {
   border-radius: var(--st-w);
   width: 70px;
   clip: 1;
+}
+.sc__rate div {
+  border-radius: var(--rad);
+  height: 20%;
+  background-color: var(--l-g-m);
+}
+.sc__rate div:nth-child(1) {
+  transform: translate3d(-20%, 0, 0);
+}
+.sc__rate div:nth-child(2) {
+  transform: translate3d(-10%, 0, 0);
+}
+.sc__rate img {
+  margin-inline: calc(var(--rad) / 2.3);
 }
 
 /*# sourceMappingURL=main.css.map */

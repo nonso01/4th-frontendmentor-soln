@@ -24,37 +24,44 @@ const person = [
   img: "/images/image-colton.jpg",
   work: "Verified Buyer",
   name: "Colton Smith",
-  word:  "We needed the same printed design as the one we had ordered a week prior. Not only did they find the original order, but we also received it in time.Excellent!"
+  word:  "\"We needed the same printed design as the one we had ordered a week prior. Not only did they find the original order, but we also received it in time.Excellent!\""
  },
  {
   img: "/images/image-irene.jpg",
   work: "Verified Buyer",
   name: 'Irene Roberts',
-  word:      "Customer service is always excellent and very quick turn around. Completely delighted with the simplicity of the purchase and the speed of delivery."
+  word:"\"Customer service is always excellent and very quick turn around. Completely delighted with the simplicity of the purchase and the speed of delivery.\""
  },
  {
   img: "/images/image-anne.jpg",
   work: "Verified Buyer",
   name: 'Anne Wallace',
-  word:  "Put an order with this company and can only praise them for the very high standard.Will definitely use them again and recommend them to everyone!"
+  word:  "\"Put an order with this company and can only praise them for the very high standard.Will definitely use them again and recommend them to everyone!\""
  },
  
  
  ]
 
 
-  function render(data=person){
+ async function render(data=person){
    
    const div= dq(".sc__people")
+ 
    const t= typeof data
+   
    if(t!=="object") throw new TypeError(`expected an Object but saw a ${t}`)
    
-   let show= data.map(e=>{
+   let showPeople=  await data.map(e=>{
     return (`<div class="sc__card fx-evenly fx-column"><div class="sc__ico fx-row fx-evenly"><img src=${e.img}><div class="fx-column fx-evenly"><h2>${e.name}</h2><h3>${e.work}</h3></div></div> <p>${e.word}</p></div>`)
    }).join("")
   
-    div.innerHTML= show
+    div.innerHTML= showPeople
     
+   
+  
+   if(true){
+    dqA(".sc__rate div").forEach(e=>e.className="fx-row fx-evenly")
+   }
     
    event(window,"resize",resize)
   }
