@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 2px solid red;
+  font-family: "League Spartan", monospace;
+  border-block-end: 2px solid var(--v-d-m);
 }
 
 :root {
@@ -17,11 +19,17 @@
   --st-w: 100%;
   --mx-h: 100vmin;
   --st-h: 100vh;
+  --v-d-m: hsla(300 43% 22% / 1);
+  --s-p: hsla(333 80% 68% / 1);
+  --dk-g-m: hsla(303 10% 53% / 1);
+  --l-g-m: hsla(300 24% 96% / 1);
+  --wt: hsla(0 0% 100% /1);
 }
 
 html {
   width: var(--mx-w);
-  min-height: var(--mx-h);
+  min-height: var(--st-h);
+  background-color: var(--wt);
 }
 html body {
   min-height: inherit;
@@ -36,6 +44,14 @@ html body {
 .trans:is(:hover, :active) {
   --func: ease;
   transition: var(--trans);
+}
+
+.fx-column {
+  flex-flow: column;
+}
+
+.fx-row {
+  flex-flow: row;
 }
 
 .fx-evenly {
