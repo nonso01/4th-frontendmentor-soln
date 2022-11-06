@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 2px solid red;
+}
+
+:root {
+  --ts: transparent;
+  --cn: center;
+  --rad: 10px;
+  --fts: 15.899px;
+  --func: cubic-bezier();
+  --trans: auto .2s var(--func);
+  --anime-prop: var(--name) 3s 1 var(--func);
+  --mx-w: 1440px;
+  --st-w: 100%;
+  --mx-h: 100vmin;
+  --st-h: 100vh;
+}
+
+html {
+  width: var(--mx-w);
+  min-height: var(--mx-h);
+}
+html body {
+  min-height: inherit;
+  position: relative;
+}
+
+/* ------ utility classes ------ */
+.hide {
+  display: none;
+}
+
+.trans:is(:hover, :active) {
+  --func: ease;
+  transition: var(--trans);
+}
+
+.fx-evenly {
+  display: flex;
+  align-content: var(--cn);
+  justify-content: space-evenly;
+}
+
+.fx-around {
+  display: flex;
+  align-content: var(--cn);
+  justify-content: space-around;
+}
+
+.fx-between {
+  display: flex;
+  align-content: var(--cn);
+  justify-content: space-between;
+}
+
+/*# sourceMappingURL=main.css.map */
