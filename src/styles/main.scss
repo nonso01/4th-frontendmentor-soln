@@ -7,13 +7,13 @@
  box-sizing: border-box;
  font-family: "League Spartan",monospace;
  
-border-block-end: 2px solid var(--v-d-m);
+//border: 2px solid red;
 }
 
 :root{
  --ts: transparent;
  --cn: center;
- --rad: 10px; //====> rem
+ --rad: .6289rem; //====> rem
  --fts: 15.899px;
  --func: cubic-bezier();
  --trans: auto .2s var(--func);
@@ -21,7 +21,7 @@ border-block-end: 2px solid var(--v-d-m);
  
  --mx-w: 1440px;
  --st-w: 100%;
- --mx-h: 100vmin;
+ --mx-h: 75vmax;
  --st-h: 100vh;
  
  --v-d-m: hsla(300 43% 22% / 1);
@@ -36,7 +36,12 @@ border-block-end: 2px solid var(--v-d-m);
 html{
  width: var(--mx-w);
  min-height: var(--st-h);
- background-color: var(--wt);
+ background:{
+  image: url("/images/bg-pattern-top-desktop.svg"), url("/images/bg-pattern-bottom-desktop.svg");
+  position: top left, bottom right;
+  size: 40% 50%, 80% 70%;
+  repeat: no-repeat;
+ }
  body{
   min-height: inherit;
   position: relative;
@@ -54,6 +59,19 @@ html{
  transition: var(--trans);
 }
 
+h1{
+color: var(--v-d-m);
+font-size: clamp(2rem,14.5vmin,4rem);
+}
+h2{
+ color: var(--wt);
+ font-size: clamp(1.15rem,2vmin,1.19rem);
+}
+h3{
+ color: var(--s-p);
+ font-size: clamp(.9rem,1.7vmin,1rem);
+}
+
 $flex-prop:("evenly","around","between");
 $flex-dir: "column","row";
 
@@ -69,4 +87,41 @@ $flex-dir: "column","row";
   align-content: var(--cn);
   justify-content: space-#{$name};
  }
+}
+
+
+.sc{
+ height: var(--mx-h);
+ width: 90%;
+ align-self: var(--cn);
+ 
+ 
+ &__intro,&__people{
+  height: 40%;
+ }
+ &__word,&__rate{
+  width: 40%;
+ }
+ 
+&__card{
+ align-self: var(--cn);
+ background-color: var(--v-d-m);
+ width: 30%;
+ height: 90%;
+ border-radius: var(--rad);
+ 
+ p{
+  flex: .5 1 auto;
+  text-align: var(--cn);
+  @extend .fx-evenly;
+    @extend .fx-column;
+ }
+  }
+  &__ico{
+   img{
+    border-radius: var(--st-w);
+    width: 70px; // ===>>
+    clip: 1;
+   }
+  }
 }
