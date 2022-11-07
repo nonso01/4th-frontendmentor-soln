@@ -52,7 +52,7 @@ const person = [
    if(t!=="object") throw new TypeError(`expected an Object but saw a ${t}`)
    
    let showPeople=  await data.map(e=>{
-    return (`<div class="sc__card fx-evenly fx-column"><div class="sc__ico fx-row fx-evenly"><img src=${e.img}><div class="fx-column fx-evenly"><h2>${e.name}</h2><h3>${e.work}</h3></div></div> <p>${e.word}</p></div>`)
+    return (`<div class="sc__card fx-evenly fx-column"><div class="sc__ico fx-row fx-evenly"><img src=${e.img} alt="ico"><div class="fx-column fx-evenly"><h2>${e.name}</h2><h3>${e.work}</h3></div></div> <p>${e.word}</p></div>`)
    }).join("")
   
     div.innerHTML= showPeople
