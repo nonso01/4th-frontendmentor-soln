@@ -29,7 +29,13 @@
  --dk-g-m: hsla(303 10% 53% / 1);
  --l-g-m: hsla(300 24% 96% / 1);
  --wt: hsla(0 0% 100% /1);
- // define --func ,--name
+ 
+ 
+--trans-a: 3.5s ease-out 1;
+--l: goLeft var(--trans-a);
+--r: goRight var(--trans-a);
+--u: goUp var(--trans-a) 3.3s;
+--d: goDown var(--trans-a) 3.3s;
 }
 
 
@@ -54,7 +60,7 @@ html{
  display: none;
 }
 
-.trans:is(:hover,:active) {
+.trans {
  --func: ease;
  transition: var(--trans);
 }
@@ -74,7 +80,7 @@ h3{
 
 p{
  color: var(--dk-g-m);
- font-size: clamp(.9rem,1.8vmin,.99rem);
+ font-size: clamp(.9rem,1.8vmin,1.04rem);
  line-height: 1.4;
 }
 
@@ -105,15 +111,21 @@ $flex-dir: "column","row";
  height: var(--mx-h);
  width: 90%;
  align-self: var(--cn);
- 
+ overflow-x: hidden; //====>>
  
  &__intro,&__people{
   height: 40%;
-  //background-color: coral;
+ // background-color: coral;
  }
  &__word,&__rate{
   width: 40%;
  // background-color: orange;
+ }
+ &__intro{
+  animation: var(--r);
+ }
+ &__people{
+  animation: var(--l);
  }
  
 &__card{
@@ -123,7 +135,17 @@ $flex-dir: "column","row";
  height: 90%;
  border-radius: var(--rad);
  padding: 2%;
+ opacity: 0; // ====>>>
+ animation: var(--u);
  
+ &:nth-child(2){
+  transform: translateY(5%);
+ }
+ &:nth-child(3){
+    transform: translateY(10%);
+ }
+ 
+ &.show{opacity: 1;} //===>>
  p{
   --dk-g-m: #{var(--wt)};
   flex: .5 1 auto;
@@ -147,6 +169,9 @@ $flex-dir: "column","row";
     border-radius: var(--rad);
     height: 20%;
     background-color: var(--l-g-m);
+    animation: var(--d);
+    opacity: 0; //===>>
+    &.show{ opacity: 1;}
     
     &:nth-child(1){
    transform: translate3d(-20%,0,0);
@@ -159,4 +184,38 @@ $flex-dir: "column","row";
     margin-inline: calc(var(--rad)/2.3);
    }
   }
+}
+
+/* ------- spicy chicken -------- */
+$anime-x: ("goLeft": -100%, "goRight": 100%);
+
+$anime-y: ("goUp": -50%,"goDown":50%);
+
+
+@each $name,$val in $anime-x{
+ @keyframes #{$name}{
+  from{
+   transform: translate3d($val,0,0);
+   filter: opacity(0);
+  }
+  to{
+   transform: translateZ(0,0,0);
+      opacity: 1;
+    filter: opacity(1);
+  }
+ }
+}
+
+@each $name, $val in $anime-y{
+ @keyframes #{$name} {
+  from{
+   opacity: 0;
+   transform: translate3d(0,$val,0);
+   }
+  to { 
+   opacity: 1;
+   transform: translate3d(0,0,0);
+   }
+ }
+
 }

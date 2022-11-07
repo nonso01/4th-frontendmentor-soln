@@ -23,6 +23,11 @@
   --dk-g-m: hsla(303 10% 53% / 1);
   --l-g-m: hsla(300 24% 96% / 1);
   --wt: hsla(0 0% 100% /1);
+  --trans-a: 3.5s ease-out 1;
+  --l: goLeft var(--trans-a);
+  --r: goRight var(--trans-a);
+  --u: goUp var(--trans-a) 3.3s;
+  --d: goDown var(--trans-a) 3.3s;
 }
 
 html {
@@ -43,7 +48,7 @@ html body {
   display: none;
 }
 
-.trans:is(:hover, :active) {
+.trans {
   --func: ease;
   transition: var(--trans);
 }
@@ -65,7 +70,7 @@ h3 {
 
 p {
   color: var(--dk-g-m);
-  font-size: clamp(0.9rem, 1.8vmin, 0.99rem);
+  font-size: clamp(0.9rem, 1.8vmin, 1.04rem);
   line-height: 1.4;
 }
 
@@ -104,12 +109,19 @@ span, figure {
   height: var(--mx-h);
   width: 90%;
   align-self: var(--cn);
+  overflow-x: hidden;
 }
 .sc__intro, .sc__people {
   height: 40%;
 }
 .sc__word, .sc__rate {
   width: 40%;
+}
+.sc__intro {
+  animation: var(--r);
+}
+.sc__people {
+  animation: var(--l);
 }
 .sc__card {
   align-self: var(--cn);
@@ -118,6 +130,17 @@ span, figure {
   height: 90%;
   border-radius: var(--rad);
   padding: 2%;
+  opacity: 0;
+  animation: var(--u);
+}
+.sc__card:nth-child(2) {
+  transform: translateY(5%);
+}
+.sc__card:nth-child(3) {
+  transform: translateY(10%);
+}
+.sc__card.show {
+  opacity: 1;
 }
 .sc__card p {
   --dk-g-m: var(--wt);
@@ -136,6 +159,11 @@ span, figure {
   border-radius: var(--rad);
   height: 20%;
   background-color: var(--l-g-m);
+  animation: var(--d);
+  opacity: 0;
+}
+.sc__rate div.show {
+  opacity: 1;
 }
 .sc__rate div:nth-child(1) {
   transform: translate3d(-20%, 0, 0);
@@ -145,6 +173,50 @@ span, figure {
 }
 .sc__rate img {
   margin-inline: calc(var(--rad) / 2.3);
+}
+
+/* ------- spicy chicken -------- */
+@keyframes goLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    filter: opacity(0);
+  }
+  to {
+    transform: translateZ(0, 0, 0);
+    opacity: 1;
+    filter: opacity(1);
+  }
+}
+@keyframes goRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+    filter: opacity(0);
+  }
+  to {
+    transform: translateZ(0, 0, 0);
+    opacity: 1;
+    filter: opacity(1);
+  }
+}
+@keyframes goUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -50%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes goDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 50%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

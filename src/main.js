@@ -63,16 +63,30 @@ const person = [
     dqA(".sc__rate div").forEach(e=>e.className="fx-row fx-evenly")
    }
     
+   event(dq(".sc__intro"),"animationend",anime)
+   
    event(window,"resize",resize)
   }
 
 
 
- function resize(){
-  let W= window.innerWidth
+ async function resize(){
+
+  const W= window.innerWidth
+  if(W>MOBILE_WIDTH && W<=TABLET_WIDTH) html.id="tb"
+  else if(W>TABLET_WIDTH) html.removeAttribute("id")
+  else if(W<=MOBILE_WIDTH) html.id="mb"
+  
   csl(W)
  }
 
+ async function anime() {
+  
+ dqA(".sc__card").forEach(e=>e.classList.add("show"))
+ dqA(".sc__rate div").forEach(e=>e.classList.add("show"))
+ 
+ csl("end and start")
+}
 
 
 event(window,"load",render())
