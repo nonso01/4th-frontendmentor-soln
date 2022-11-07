@@ -11,9 +11,9 @@
   --cn: center;
   --rad: .6289rem;
   --fts: 15.899px;
+  --bd: 2px solid red;
   --func: cubic-bezier();
   --trans: auto .2s var(--func);
-  --anime-prop: var(--name) 3s 1 var(--func);
   --mx-w: 1440px;
   --st-w: 100%;
   --mx-h: 75vmax;
@@ -31,8 +31,9 @@
 }
 
 html {
-  width: var(--mx-w);
+  width: var(--st-w);
   min-height: var(--st-h);
+  font-size: var(--fts);
   background-image: url("/images/bg-pattern-top-desktop.svg"), url("/images/bg-pattern-bottom-desktop.svg");
   background-position: top left, bottom right;
   background-size: 40% 50%, 80% 70%;
@@ -46,6 +47,10 @@ html body {
 /* ------ utility classes ------ */
 .hide {
   display: none;
+}
+
+.show {
+  opacity: 1 !important;
 }
 
 .trans {
@@ -77,9 +82,11 @@ p {
 span, figure {
   height: min-content;
   align-self: var(--cn);
+  color: var(--v-d-m);
+  font-weight: 600;
 }
 
-.fx-column, .sc__card p {
+.fx-column, #mb .sc__rate div, #tb .sc__people, #mb .sc__people, #tb .sc__intro, #mb .sc__intro, .sc__card p {
   flex-flow: column;
 }
 
@@ -87,7 +94,7 @@ span, figure {
   flex-flow: row;
 }
 
-.fx-evenly, .sc__card p {
+.fx-evenly, #tb .sc__people, #mb .sc__people, #tb .sc__intro, #mb .sc__intro, .sc__card p {
   display: flex;
   align-content: var(--cn);
   justify-content: space-evenly;
@@ -139,9 +146,6 @@ span, figure {
 .sc__card:nth-child(3) {
   transform: translateY(10%);
 }
-.sc__card.show {
-  opacity: 1;
-}
 .sc__card p {
   --dk-g-m: var(--wt);
   flex: 0.5 1 auto;
@@ -152,13 +156,14 @@ span, figure {
 }
 .sc__ico img {
   border-radius: var(--st-w);
-  width: 70px;
+  width: 60px;
   clip: 1;
 }
 .sc__rate div {
   border-radius: var(--rad);
   height: 20%;
   background-color: var(--l-g-m);
+  box-shadow: 0 var(--rad) var(--rad) 0.01rem hsla(300deg, 24%, 96%, 0.2);
   animation: var(--d);
   opacity: 0;
 }
@@ -173,6 +178,82 @@ span, figure {
 }
 .sc__rate img {
   margin-inline: calc(var(--rad) / 2.3);
+}
+
+/* ----- js media ------- */
+#tb, #mb {
+  background-image: url("/images/bg-pattern-top-mobile.svg"), url("/images/bg-pattern-bottom-mobile.svg");
+  background-repeat: no-repeat;
+  background-position: top left, bottom right;
+  background-size: 100% 40%, 100% 50%;
+}
+#tb *, #mb * {
+  animation: none;
+  transform: none;
+  opacity: 1;
+  overflow: scroll;
+}
+#tb .sc, #mb .sc {
+  width: 100%;
+}
+#tb .sc__intro div:not(.sc__rate div), #mb .sc__intro div:not(.sc__rate div) {
+  width: 90%;
+  align-self: var(--cn);
+  height: 3000px;
+}
+#tb .sc__people, #mb .sc__people {
+  height: max-content;
+}
+#tb .sc__card, #mb .sc__card {
+  margin: 1% 0;
+}
+#tb h1, #mb h1 {
+  font-size: clamp(1.6rem, 9.9vmin, 2.6rem);
+}
+#tb h1, #tb p, #mb h1, #mb p {
+  text-align: var(--cn);
+}
+#tb span, #mb span {
+  font-size: clamp(0.97rem, 2vmin, 1rem);
+  font-weight: 500;
+}
+
+#mb .sc {
+  min-height: 1500px;
+}
+#mb .sc__intro {
+  animation: var(--l);
+}
+#mb .sc__people {
+  flex: 0.7 1 auto;
+  opacity: 0;
+  animation: var(--u);
+}
+#mb .sc__card {
+  width: 90%;
+}
+
+#tb .sc {
+  min-height: 1000px;
+  overflow-x: hidden;
+}
+#tb .sc__intro {
+  width: 75%;
+  align-self: var(--cn);
+  animation: var(--r);
+}
+#tb .sc__rate {
+  flex: 1 1 auto;
+}
+#tb .sc__rate div {
+  flex: 0.2 1 auto;
+}
+#tb .sc__card {
+  width: 70%;
+}
+#tb .sc__people {
+  animation: var(--l);
+  opacity: 0;
 }
 
 /* ------- spicy chicken -------- */

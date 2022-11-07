@@ -70,23 +70,25 @@ const person = [
 
 
 
- async function resize(){
+  function resize(){
 
   const W= window.innerWidth
   if(W>MOBILE_WIDTH && W<=TABLET_WIDTH) html.id="tb"
   else if(W>TABLET_WIDTH) html.removeAttribute("id")
   else if(W<=MOBILE_WIDTH) html.id="mb"
   
-  csl(W)
+  //csl(W)
  }
 
  async function anime() {
   
  dqA(".sc__card").forEach(e=>e.classList.add("show"))
  dqA(".sc__rate div").forEach(e=>e.classList.add("show"))
- 
- csl("end and start")
+ dq(".sc__people").classList.add("show")
+// csl("end and start")
 }
 
 
 event(window,"load",render())
+
+/* see you tomorrow my beloved js */
